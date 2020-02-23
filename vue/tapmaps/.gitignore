@@ -21,7 +21,7 @@ yarn-error.log*
 *.sw?
 
 # Images
-# public/TapMapsLogo.png
+public/TapMapsLogo.png
 
 # Static files
-# vueREADME.md
+vueREADME.md

@@ -13,10 +13,18 @@
         @click="center=m.position"
       ></gmap-marker>
     </gmap-map>
+
+    <!-- <app-academic></app-academic>
+    <app-housing></app-housing>
+    <app-resource></app-resource> -->
   </div>
 </template>
 
 <script>
+import Academic from './components/Academic.vue';
+import Housing from './components/Housing.vue';
+import Resource from './components/Resource.vue';
+
 export default {
   name: 'App',
   data() {
@@ -29,7 +37,10 @@ export default {
       currentPlace: null
     };
   },
-  methods: {
+  components: {
+    appAcademic: Academic,
+    appHousing: Housing,
+    appResource: Resource
   },
 }
 </script>
@@ -39,4 +50,11 @@ export default {
     color: red;
   }
 
+  h2 {
+    text-decoration: underline;
+  }
+
+  .list {
+    list-style: none;
+  }
 </style>

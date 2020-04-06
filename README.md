@@ -6,5 +6,8 @@ npm install
 ### If there are too many vulnerabilities:
 npm audit fix
 
+### Install Firebase Firestore package:
+npm install @firebase/app @firebase/firestore vue-firestore --save
+
 ### To open the webpage:
 npm run serve

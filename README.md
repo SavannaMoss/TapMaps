@@ -12,5 +12,8 @@ npm install vue2-google-maps --save
 ### Install Firebase Firestore package:
 npm install @firebase/app @firebase/firestore vue-firestore --save
 
+### Install Bootstrap package:
+npm install bootstrap-vue bootstrap --save
+
 ### To open the webpage:
 npm run serve

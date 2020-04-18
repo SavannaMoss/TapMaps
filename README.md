@@ -6,6 +6,9 @@ npm install
 ### If there are too many vulnerabilities:
 npm audit fix
 
+### Install Vue Google Maps Component by xkjyeah:
+npm install vue2-google-maps --save
+
 ### Install Firebase Firestore package:
 npm install @firebase/app @firebase/firestore vue-firestore --save
 

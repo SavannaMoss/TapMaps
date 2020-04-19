@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>TapMapsLogo.png">
     <title>TapMaps</title>
+    <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+	  <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
+	  <!-- Load Vue followed by BootstrapVue, and BootstrapVueIcons -->
+	  <script src="//unpkg.com/vue@latest/dist/vue.min.js"></script>
+	  <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+	  <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script>
   </head>
   <body>
     <noscript>
@@ -13,7 +19,7 @@
     </noscript>
     <div id="app"> <!-- contains everything to be messed with -->
       <div id="map"></div>
-
+      <!-- <script src="/dist/build.js"></script> -->
     </div>
     <!-- built files will be auto injected -->
   </body>

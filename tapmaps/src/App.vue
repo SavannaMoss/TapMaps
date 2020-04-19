@@ -5,10 +5,19 @@
       :center="center"
       :zoom="17"
       style="width:100%;  height: 70%;"
-      :options="mapStyle"
       >
+      <!-- :options="mapStyle" -->
 
-      <GmapInfoWindow :options="infoOptions" :position="infoWindowPos" :opened="infoWinOpen" @closeclick="infoWinOpen=false">
+      <GmapInfoWindow
+      :options="infoOptions"
+      :position="infoWindowPos"
+      :opened="infoWinOpen"
+      @closeclick="infoWinOpen=false">
+
+        <popup
+          :category="this.infoOptions.category"
+          :building="this.infoOptions.building">
+        </popup>
 
       </GmapInfoWindow>
 
@@ -22,17 +31,11 @@
 
     </GmapMap>
 
-    <app-academic></app-academic>
-    <app-housing></app-housing>
-    <app-resource></app-resource>
-
   </div>
 </template>
 
 <script>
-import Academic from './components/Academic.vue';
-import Housing from './components/Housing.vue';
-import Resource from './components/Resource.vue';
+import PopUp from './components/PopUp.vue'
 
 export default {
   name: 'App',
@@ -40,163 +43,193 @@ export default {
     return {
       center: { lat: 28.031, lng: -81.946 },
 
-      mapStyle: [{
-          "featureType": "poi",
-          "elementType": "labels",
-          "stylers": [
-                { "visibility": "off" }
-          ]
-      }],
+      // mapStyle: [{
+      //     "featureType": "poi",
+      //     "elementType": "labels",
+      //     "stylers": [
+      //           { "visibility": "off" }
+      //     ]
+      // }],
 
       infoWindowPos: null,
       infoWinOpen: false,
       currentMidx: null,
 
       infoOptions: {
-        content: '',
-        pixelOffest: { width: 0, height: 40}
+        category: '',
+        building: '',
+        pixelOffest: {
+          width: 0,
+          height: 0}
       },
 
-      markers: [{
+      markers: [
+        { // Academic Buildings
         position: {
           lat: 28.030122,
           lng: -81.941449
         },
-        infoText: 'BBB'}, {
+        category: 'academic',
+        building: 'beckerBusinessBuilding'}, {
         position: {
           lat: 28.030575,
           lng: -81.945798
         },
-        infoText: 'C'}, {
+        category: 'academic',
+        building: 'berryBuilding'}, {
         position: {
           lat: 28.028871,
           lng: -81.950138
         },
-        infoText: 'CH'}, {
+        category: 'academic',
+        building: 'christoversonHumanitiesBuilding'}, {
         position: {
           lat: 28.031828,
           lng: -81.950241
         },
-        infoText: 'CC'}, {
+        category: 'academic',
+        building: 'communications'}, {
         position: {
           lat: 28.029709,
           lng: -81.950068
         },
-        infoText: 'WDS'}, {
+        category: 'academic',
+        building: 'danceStudio'}, {
         position: {
           lat: 28.030310,
           lng: -81.946372
         },
-        infoText: 'E'}, {
+        category: 'academic',
+        building: 'edgeHall'}, {
         position: {
           lat: 28.029834,
           lng: -81.949621
         },
-        infoText: 'M'}, {
+        category: 'academic',
+        building: 'fineArts'}, {
         position: {
           lat: 28.030014,
           lng: -81.948872
         },
-        infoText: 'RD'}, {
+        category: 'academic',
+        building: 'jenkinsRecitalHall'}, {
         position: {
           lat: 28.031454,
           lng: -81.950252
         },
-        infoText: 'BN'}, {
+        category: 'academic',
+        building: 'nursing'}, {
         position: {
           lat: 28.032615,
           lng: -81.946909
         },
-        infoText: 'O'}, {
+        category: 'academic',
+        building: 'ordway'}, {
         position: {
           lat: 28.030533,
           lng: -81.947756
         },
-        infoText: 'PS'}, {
-        position: {
-          lat: 28.031584,
-          lng: -81.943565
-        },
-        infoText: 'Dell'}, {
-        position: {
-          lat: 28.031835,
-          lng: -81.943624
-        },
-        infoText: 'Miller'}, {
-        position: {
-          lat: 28.032022,
-          lng: -81.943624
-        },
-        infoText: 'Hollis'}, {
-        position: {
-          lat: 28.040339,
-          lng: -81.945086
-        },
-        infoText: 'Garden'}, {
-        position: {
-          lat: 28.032726,
-          lng: -81.943285
-        },
-        infoText: 'Jenkins'}, {
-        position: {
-          lat: 28.026960,
-          lng: -81.937310
-        },
-        infoText: 'LHA'}, {
-        position: {
-          lat: 28.036378,
-          lng: -81.955905
-        },
-        infoText: 'Lake M'}, {
-        position: {
-          lat: 28.032948,
-          lng: -81.944403
-        },
-        infoText: 'Publix'}, {
-        position: {
-          lat: 28.036500,
-          lng: -81.945290
-        },
-        infoText: 'Star'}, {
+        category: 'academic',
+        building: 'polkScience'},
+        // { // Housing
+        // position: {
+        //   lat: 28.031584,
+        //   lng: -81.943565
+        // },
+        // category: 'housing',
+        // building: 'dellHall'}, {
+        // position: {
+        //   lat: 28.031835,
+        //   lng: -81.943624
+        // },
+        // category: 'housing',
+        // building: 'millerHall'}, {
+        // position: {
+        //   lat: 28.032022,
+        //   lng: -81.943624
+        // },
+        // category: 'housing',
+        // building: 'hollisHall'}, {
+        // position: {
+        //   lat: 28.040339,
+        //   lng: -81.945086
+        // },
+        // category: 'housing',
+        // building: 'gardenApartments'}, {
+        // position: {
+        //   lat: 28.032726,
+        //   lng: -81.943285
+        // },
+        // category: 'housing',
+        // building: 'jenkinsHall'}, {
+        // position: {
+        //   lat: 28.026960,
+        //   lng: -81.937310
+        // },
+        // category: 'housing',
+        // building: 'lakeHollingsworthApartments'}, {
+        // position: {
+        //   lat: 28.036378,
+        //   lng: -81.955905
+        // },
+        // category: 'housing',
+        // building: 'lakeMortonApartments'}, {
+        // position: {
+        //   lat: 28.032948,
+        //   lng: -81.944403
+        // },
+        // category: 'housing',
+        // building: 'publixCommons'}, {
+        // position: {
+        //   lat: 28.036500,
+        //   lng: -81.945290
+        // },
+        // category: 'housing',
+        // building: 'starApartments'},
+        { // Resource Offices
         position: {
           lat: 28.031319,
           lng: -81.949262
         },
-        infoText: 'B'}, {
+        category: 'resource',
+        building: 'buckner'}, {
         position: {
           lat: 28.031674,
           lng: -81.945853
         },
-        infoText: 'JF'}, {
+        category: 'resource',
+        building: 'jenkinsFieldhouse'}, {
         position: {
           lat: 28.032470,
           lng: -81.948194
         },
-        infoText: 'R'}, {
+        category: 'resource',
+        building: 'rogersBuilding'}, {
         position: {
           lat: 28.032486,
           lng: -81.948865
         },
-        infoText: 'RL'
-      }],
+        category: 'resource',
+        building: 'rouxLibrary'}
+    ],
 
       places: [],
 
-      currentPlace: null
+      currentPlace: null,
     };
   },
 
   components: {
-    appAcademic: Academic,
-    appHousing: Housing,
-    appResource: Resource
+    popup: PopUp
   },
 
   methods: {
     toggleInfoWindow(marker, idx) {
-      console.log('fuk u');
       this.infoWindowPos = marker.position;
-      this.infoOptions.content = marker.infoText;
+      this.infoOptions.category = marker.category;
+      this.infoOptions.building = marker.building;
+      console.log(this.infoOptions.category, " is ", marker.category);
+      console.log(this.infoOptions.building, " is ", marker.building);
 
       if (this.currentMidx == idx) {
         this.infoWinOpen = !this.infoWinOpen;
@@ -206,13 +239,7 @@ export default {
         this.currentMidx = idx;
       }
     }
-  },
-
-  // events: ['toggleInfoWindow'],
-  // google.maps.event.addListener()
-  // mounted() {
-  //   this.markers.addEventListener('click', toggleInfoWindow())
-  // }
+  }
 }
 </script>
 
@@ -227,9 +254,5 @@ export default {
 
   h2 {
     text-decoration: underline;
-  }
-
-  .list {
-    list-style: none;
   }
 </style>

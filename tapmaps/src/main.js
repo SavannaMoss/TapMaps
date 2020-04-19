@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
 import * as VueGoogleMaps from "vue2-google-maps";
-//import {GmapMarker} from 'vue2-google-maps/src/components/marker'
 import VueFirestore from 'vue-firestore';
+
+import VModal from 'vue-js-modal';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
 
 Vue.config.productionTip = false
 Vue.use(VueGoogleMaps, {
@@ -14,8 +18,11 @@ Vue.use(VueGoogleMaps, {
   installComponents: true,
 });
 
-//Vue.component('GmapMarker', GmapMarker);
 Vue.use(VueFirestore);
+
+Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
+Vue.use(VModal)
 
 new Vue({
   render: h => h(App),

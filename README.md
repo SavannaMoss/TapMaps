@@ -15,5 +15,8 @@ npm install @firebase/app @firebase/firestore vue-firestore --save
 ### Install Bootstrap package:
 npm install bootstrap-vue bootstrap --save
 
+### Install Modal package:
+npm install vue-js-modal --save
+
 ### To open the webpage:
 npm run serve

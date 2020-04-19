@@ -3,27 +3,35 @@
 
     <b-button variant="danger" v-b-modal.modal-scrollable class="circle-icon" @click='help'><b-icon icon="geo-alt"></b-icon></b-button>
 
-    <b-modal id="modal-scrollable" scrollable :title="this.place.name" hide-footer="true">
-
-      <h4>{{ this.place.name }} - {{ this.place.acronym }}</h4>
-      <p>{{ this.place.description }}</p>
+    <b-modal id="modal-scrollable" scrollable :title="this.place.acronym" hide-footer="true">
 
       <!-- Housing such as dorms and apartments. -->
-      <!-- <div v-if="this.cat === 'housing'">
+      <div v-if="this.cat === 'housing'">
         <h4>{{ this.place.name }}</h4>
-        <ul class="list">
+        <ul>
           <li><u>Address</u>: {{ this.place.streetAddress }}</li>
           <li><u>Gender</u>: {{ this.place.gender }}</li>
           <li><u>Features</u>: {{ this.place.features }}</li>
           <li><u>Furnishings</u>: {{ this.place.furnishings }}</li>
+          <li><u>Pricing</u>:
+            <ul>
+              <li>Single - {{ this.place.pricing.single }}</li>
+              <li>Double - {{ this.place.pricing.double }}</li>
+            </ul>
+          </li>
+          <li><u>Room Types</u>:
+            <ul v-for="(room, index) in this.place.roomTypes" :key="index">
+              <li>{{ room }}</li>
+            </ul>
+          </li>
         </ul>
-      </div> -->
+      </div>
 
       <!-- Academic buildings and resource offices. -->
-      <!-- <div v-else>
-        <h4>{{ this.place.name }} - {{ this.place.acronym }}</h4>
+      <div v-else>
+        <h4>{{ this.place.name }}</h4>
         <p>{{ this.place.description }}</p>
-      </div> -->
+      </div>
 
     </b-modal>
 
@@ -50,22 +58,11 @@
         modalShow: false
       }
     },
-    // created(){
-    //   let ref = db.collection(this.cat).where(document, '==', this.build)
-    //   ref.get().then(snapshot => {
-    //     snapshot.forEach(doc => {
-    //       this.place = doc.data()
-    //     })
-    //   })
-    // },
     firestore() {
-      return {
-        place: db.collection(this.cat).doc(this.build),
-      }
-    },
-    methods: {
-      help() {
-        console.log(this.cat, this.build);
+      if (this.cat !== "" && this.build !== "") {
+        return {
+          place: db.collection(this.cat).doc(this.build),
+        }
       }
     }
   }
@@ -86,7 +83,7 @@
     left:;
   }
 
-  .list {
+  /* .list {
     list-style: none;
-  }
+  } */
 </style>

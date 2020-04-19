@@ -5,8 +5,7 @@
       :center="center"
       :zoom="17"
       style="width:100%;  height: 70%;"
-      >
-      <!-- :options="mapStyle" -->
+      :options="{styles: styles}">
 
       <GmapInfoWindow
       :options="infoOptions"
@@ -16,7 +15,8 @@
 
         <popup
           :category="this.infoOptions.category"
-          :building="this.infoOptions.building">
+          :building="this.infoOptions.building"
+          :key="this.componentKey">
         </popup>
 
       </GmapInfoWindow>
@@ -26,7 +26,7 @@
       v-for="(m, index) in markers"
       :position="m.position"
       :clickable="true"
-      @click="toggleInfoWindow(m, index)"
+      @click="toggleInfoWindow(m, index), forceRerender()"
       />
 
     </GmapMap>
@@ -41,15 +41,10 @@ export default {
   name: 'App',
   data() {
     return {
-      center: { lat: 28.031, lng: -81.946 },
+      // Rerendering key.
+      componentKey: 0,
 
-      // mapStyle: [{
-      //     "featureType": "poi",
-      //     "elementType": "labels",
-      //     "stylers": [
-      //           { "visibility": "off" }
-      //     ]
-      // }],
+      center: { lat: 28.031, lng: -81.946 },
 
       infoWindowPos: null,
       infoWinOpen: false,
@@ -131,61 +126,61 @@ export default {
         },
         category: 'academic',
         building: 'polkScience'},
-        // { // Housing
-        // position: {
-        //   lat: 28.031584,
-        //   lng: -81.943565
-        // },
-        // category: 'housing',
-        // building: 'dellHall'}, {
-        // position: {
-        //   lat: 28.031835,
-        //   lng: -81.943624
-        // },
-        // category: 'housing',
-        // building: 'millerHall'}, {
-        // position: {
-        //   lat: 28.032022,
-        //   lng: -81.943624
-        // },
-        // category: 'housing',
-        // building: 'hollisHall'}, {
-        // position: {
-        //   lat: 28.040339,
-        //   lng: -81.945086
-        // },
-        // category: 'housing',
-        // building: 'gardenApartments'}, {
-        // position: {
-        //   lat: 28.032726,
-        //   lng: -81.943285
-        // },
-        // category: 'housing',
-        // building: 'jenkinsHall'}, {
-        // position: {
-        //   lat: 28.026960,
-        //   lng: -81.937310
-        // },
-        // category: 'housing',
-        // building: 'lakeHollingsworthApartments'}, {
-        // position: {
-        //   lat: 28.036378,
-        //   lng: -81.955905
-        // },
-        // category: 'housing',
-        // building: 'lakeMortonApartments'}, {
-        // position: {
-        //   lat: 28.032948,
-        //   lng: -81.944403
-        // },
-        // category: 'housing',
-        // building: 'publixCommons'}, {
-        // position: {
-        //   lat: 28.036500,
-        //   lng: -81.945290
-        // },
-        // category: 'housing',
-        // building: 'starApartments'},
+        { // Housing
+        position: {
+          lat: 28.031584,
+          lng: -81.943565
+        },
+        category: 'housing',
+        building: 'dellHall'}, {
+        position: {
+          lat: 28.031835,
+          lng: -81.943624
+        },
+        category: 'housing',
+        building: 'millerHall'}, {
+        position: {
+          lat: 28.032022,
+          lng: -81.943624
+        },
+        category: 'housing',
+        building: 'hollisHall'}, {
+        position: {
+          lat: 28.040339,
+          lng: -81.945086
+        },
+        category: 'housing',
+        building: 'gardenApartments'}, {
+        position: {
+          lat: 28.032726,
+          lng: -81.943285
+        },
+        category: 'housing',
+        building: 'jenkinsHall'}, {
+        position: {
+          lat: 28.026960,
+          lng: -81.937310
+        },
+        category: 'housing',
+        building: 'lakeHollingsworthApartments'}, {
+        position: {
+          lat: 28.036378,
+          lng: -81.955905
+        },
+        category: 'housing',
+        building: 'lakeMortonApartments'}, {
+        position: {
+          lat: 28.032948,
+          lng: -81.944403
+        },
+        category: 'housing',
+        building: 'publixCommons'}, {
+        position: {
+          lat: 28.036500,
+          lng: -81.945290
+        },
+        category: 'housing',
+        building: 'starApartments'},
         { // Resource Offices
         position: {
           lat: 28.031319,
@@ -213,6 +208,249 @@ export default {
         building: 'rouxLibrary'}
     ],
 
+    // styles: [
+    //   { "featureType": "poi",
+    //     "stylers": [{"visibility": "off"}]
+    //   },
+    //   { "featureType": "transit",
+    //     "stylers": [{"visibility": "off"}]
+    //   }
+    // ],
+
+    styles: [
+          {
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#ebe3cd"
+              }
+            ]
+          },
+          {
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#523735"
+              }
+            ]
+          },
+          {
+            "elementType": "labels.text.stroke",
+            "stylers": [
+              {
+                "color": "#f5f1e6"
+              }
+            ]
+          },
+          {
+            "featureType": "administrative",
+            "elementType": "geometry.stroke",
+            "stylers": [
+              {
+                "color": "#c9b2a6"
+              }
+            ]
+          },
+          {
+            "featureType": "administrative.land_parcel",
+            "elementType": "geometry.stroke",
+            "stylers": [
+              {
+                "color": "#dcd2be"
+              }
+            ]
+          },
+          {
+            "featureType": "administrative.land_parcel",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#ae9e90"
+              }
+            ]
+          },
+          {
+            "featureType": "landscape.natural",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#dfd2ae"
+              }
+            ]
+          },
+          {
+            "featureType": "poi",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#dfd2ae"
+              }
+            ]
+          },
+          {
+            "featureType": "poi",
+            "elementType": "labels",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "poi",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#93817c"
+              }
+            ]
+          },
+          {
+            "featureType": "poi.park",
+            "elementType": "geometry.fill",
+            "stylers": [
+              {
+                "color": "#a5b076"
+              }
+            ]
+          },
+          {
+            "featureType": "poi.park",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#447530"
+              }
+            ]
+          },
+          {
+            "featureType": "road",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#f5f1e6"
+              }
+            ]
+          },
+          {
+            "featureType": "road.arterial",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#fdfcf8"
+              }
+            ]
+          },
+          {
+            "featureType": "road.highway",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#f8c967"
+              }
+            ]
+          },
+          {
+            "featureType": "road.highway",
+            "elementType": "geometry.stroke",
+            "stylers": [
+              {
+                "color": "#e9bc62"
+              }
+            ]
+          },
+          {
+            "featureType": "road.highway.controlled_access",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#e98d58"
+              }
+            ]
+          },
+          {
+            "featureType": "road.highway.controlled_access",
+            "elementType": "geometry.stroke",
+            "stylers": [
+              {
+                "color": "#db8555"
+              }
+            ]
+          },
+          {
+            "featureType": "road.local",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#806b63"
+              }
+            ]
+          },
+          {
+            "featureType": "transit",
+            "elementType": "labels",
+            "stylers": [
+              {
+                "visibility": "off"
+              }
+            ]
+          },
+          {
+            "featureType": "transit.line",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#dfd2ae"
+              }
+            ]
+          },
+          {
+            "featureType": "transit.line",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#8f7d77"
+              }
+            ]
+          },
+          {
+            "featureType": "transit.line",
+            "elementType": "labels.text.stroke",
+            "stylers": [
+              {
+                "color": "#ebe3cd"
+              }
+            ]
+          },
+          {
+            "featureType": "transit.station",
+            "elementType": "geometry",
+            "stylers": [
+              {
+                "color": "#dfd2ae"
+              }
+            ]
+          },
+          {
+            "featureType": "water",
+            "elementType": "geometry.fill",
+            "stylers": [
+              {
+                "color": "#b9d3c2"
+              }
+            ]
+          },
+          {
+            "featureType": "water",
+            "elementType": "labels.text.fill",
+            "stylers": [
+              {
+                "color": "#92998d"
+              }
+            ]
+          }
+        ],
+
       places: [],
 
       currentPlace: null,
@@ -224,12 +462,13 @@ export default {
   },
 
   methods: {
+    forceRerender() {
+      this.componentKey += 1;
+    },
     toggleInfoWindow(marker, idx) {
       this.infoWindowPos = marker.position;
       this.infoOptions.category = marker.category;
       this.infoOptions.building = marker.building;
-      console.log(this.infoOptions.category, " is ", marker.category);
-      console.log(this.infoOptions.building, " is ", marker.building);
 
       if (this.currentMidx == idx) {
         this.infoWinOpen = !this.infoWinOpen;

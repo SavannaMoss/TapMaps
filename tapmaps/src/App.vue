@@ -4,7 +4,7 @@
     <GmapMap
       :center="center"
       :zoom="17"
-      style="width:100%;  height: 70%;"
+      style="width:100%;  height: 80%;"
       :options="{styles: styles}">
 
       <GmapInfoWindow
@@ -26,6 +26,7 @@
       v-for="(m, index) in markers"
       :position="m.position"
       :clickable="true"
+      :label="m.label"
       @click="toggleInfoWindow(m, index), forceRerender()"
       />
 
@@ -65,147 +66,291 @@ export default {
           lng: -81.941449
         },
         category: 'academic',
-        building: 'beckerBusinessBuilding'}, {
+        building: 'beckerBusinessBuilding',
+        label: {
+          color: 'black',
+          fontFamily: '"georgia", sans-serif',
+          fontWeight: '500',
+          text: 'Becker Business',
+        }}, {
         position: {
           lat: 28.030575,
           lng: -81.945798
         },
         category: 'academic',
-        building: 'berryBuilding'}, {
+        building: 'berryBuilding',
+        label: {
+          color: 'black',
+          fontFamily: '"georgia", sans-serif',
+          fontWeight: '500',
+          text: 'Berry',
+        }}, {
         position: {
           lat: 28.028871,
           lng: -81.950138
         },
         category: 'academic',
-        building: 'christoversonHumanitiesBuilding'}, {
+        building: 'christoversonHumanitiesBuilding',
+        label: {
+          color: 'black',
+          fontFamily: '"georgia", sans-serif',
+          fontWeight: '500',
+          text: 'Christoverson',
+        }}, {
         position: {
           lat: 28.031828,
           lng: -81.950241
         },
         category: 'academic',
-        building: 'communications'}, {
+        building: 'communications',
+        label: {
+          color: 'black',
+          fontFamily: '"georgia", sans-serif',
+          fontWeight: '500',
+          text: 'Communications',
+        }}, {
         position: {
           lat: 28.029709,
           lng: -81.950068
         },
         category: 'academic',
-        building: 'danceStudio'}, {
+        building: 'danceStudio',
+        label: {
+          color: 'black',
+          fontFamily: '"georgia", sans-serif',
+          fontWeight: '500',
+          text: 'Dance',
+        }}, {
         position: {
           lat: 28.030310,
           lng: -81.946372
         },
         category: 'academic',
-        building: 'edgeHall'}, {
+        building: 'edgeHall',
+        label: {
+          color: 'black',
+          fontFamily: '"georgia", sans-serif',
+          fontWeight: '500',
+          text: 'Edge',
+        }}, {
         position: {
           lat: 28.029834,
           lng: -81.949621
         },
         category: 'academic',
-        building: 'fineArts'}, {
+        building: 'fineArts',
+        label: {
+          color: 'black',
+          fontFamily: '"georgia", sans-serif',
+          fontWeight: '500',
+          text: 'Fine Arts',
+        }}, {
         position: {
           lat: 28.030014,
           lng: -81.948872
         },
         category: 'academic',
-        building: 'jenkinsRecitalHall'}, {
+        building: 'jenkinsRecitalHall',
+        label: {
+          color: 'black',
+          fontFamily: '"georgia", sans-serif',
+          fontWeight: '500',
+          text: 'Recital Hall',
+        }}, {
         position: {
           lat: 28.031454,
           lng: -81.950252
         },
         category: 'academic',
-        building: 'nursing'}, {
+        building: 'nursing',
+        label: {
+          color: 'black',
+          fontFamily: '"georgia", sans-serif',
+          fontWeight: '500',
+          text: 'Nursing',
+        }}, {
         position: {
           lat: 28.032615,
           lng: -81.946909
         },
         category: 'academic',
-        building: 'ordway'}, {
+        building: 'ordway',
+        label: {
+          color: 'black',
+          fontFamily: '"georgia", sans-serif',
+          fontWeight: '500',
+          text: 'Ordway',
+        }}, {
         position: {
           lat: 28.030533,
           lng: -81.947756
         },
         category: 'academic',
-        building: 'polkScience'},
-        { // Housing
+        building: 'polkScience',
+        label: {
+          color: 'black',
+          fontFamily: '"georgia", sans-serif',
+          fontWeight: '500',
+          text: 'Polk Science',
+        }}, {
+        // Housing
         position: {
           lat: 28.031584,
           lng: -81.943565
         },
         category: 'housing',
-        building: 'dellHall'}, {
+        building: 'dellHall',
+        label: {
+          color: 'black',
+          fontFamily: '"georgia", sans-serif',
+          fontWeight: '500',
+          text: 'Dell',
+        }}, {
         position: {
           lat: 28.031835,
           lng: -81.943624
         },
         category: 'housing',
-        building: 'millerHall'}, {
+        building: 'millerHall',
+        label: {
+          color: 'black',
+          fontFamily: '"georgia", sans-serif',
+          fontWeight: '500',
+          text: 'Miller',
+        }}, {
         position: {
           lat: 28.032022,
           lng: -81.943624
         },
         category: 'housing',
-        building: 'hollisHall'}, {
+        building: 'hollisHall',
+        label: {
+          color: 'black',
+          fontFamily: '"georgia", sans-serif',
+          fontWeight: '500',
+          text: 'Hollis',
+        }}, {
         position: {
           lat: 28.040339,
           lng: -81.945086
         },
         category: 'housing',
-        building: 'gardenApartments'}, {
+        building: 'gardenApartments',
+        label: {
+          color: 'black',
+          fontFamily: '"georgia", sans-serif',
+          fontWeight: '500',
+          text: 'Garden',
+        }}, {
         position: {
           lat: 28.032726,
           lng: -81.943285
         },
         category: 'housing',
-        building: 'jenkinsHall'}, {
+        building: 'jenkinsHall',
+        label: {
+          color: 'black',
+          fontFamily: '"georgia", sans-serif',
+          fontWeight: '500',
+          text: 'Jenkins',
+        }}, {
         position: {
           lat: 28.026960,
           lng: -81.937310
         },
         category: 'housing',
-        building: 'lakeHollingsworthApartments'}, {
+        building: 'lakeHollingsworthApartments',
+        label: {
+          color: 'black',
+          fontFamily: '"georgia", sans-serif',
+          fontWeight: '500',
+          text: 'LHA',
+        }}, {
         position: {
           lat: 28.036378,
           lng: -81.955905
         },
         category: 'housing',
-        building: 'lakeMortonApartments'}, {
+        building: 'lakeMortonApartments',
+        label: {
+          color: 'black',
+          fontFamily: '"georgia", sans-serif',
+          fontWeight: '500',
+          text: 'Lake Morton',
+        }}, {
         position: {
           lat: 28.032948,
           lng: -81.944403
         },
         category: 'housing',
-        building: 'publixCommons'}, {
+        building: 'publixCommons',
+        label: {
+          color: 'black',
+          fontFamily: '"georgia", sans-serif',
+          fontWeight: '500',
+          text: 'Greek Suites',
+        }}, {
         position: {
           lat: 28.036500,
           lng: -81.945290
         },
         category: 'housing',
-        building: 'starApartments'},
-        { // Resource Offices
+        building: 'starApartments',
+        label: {
+          color: 'black',
+          fontFamily: '"georgia", sans-serif',
+          fontWeight: '500',
+          text: 'Star',
+        }}, {
+        // Resource Offices
         position: {
           lat: 28.031319,
           lng: -81.949262
         },
         category: 'resource',
-        building: 'buckner'}, {
+        building: 'buckner',
+        label: {
+          color: 'black',
+          fontFamily: '"georgia", sans-serif',
+          fontWeight: '500',
+          text: 'Buckner',
+        }}, {
         position: {
           lat: 28.031674,
           lng: -81.945853
         },
         category: 'resource',
-        building: 'jenkinsFieldhouse'}, {
+        building: 'jenkinsFieldhouse',
+        label: {
+          color: 'black',
+          fontFamily: '"georgia", sans-serif',
+          fontWeight: '500',
+          text: 'Fieldhouse',
+        }}, {
         position: {
           lat: 28.032470,
           lng: -81.948194
         },
         category: 'resource',
-        building: 'rogersBuilding'}, {
+        building: 'rogersBuilding',
+        label: {
+          color: 'black',
+          fontFamily: '"georgia", sans-serif',
+          fontWeight: '500',
+          text: 'Rogers',
+        }}, {
         position: {
           lat: 28.032486,
           lng: -81.948865
         },
         category: 'resource',
-        building: 'rouxLibrary'}
+        building: 'rouxLibrary',
+        label: {
+          color: 'black',
+          fontFamily: '"georgia", sans-serif',
+          fontWeight: '500',
+          text: 'Roux',
+        }}
     ],
 
     styles: [
@@ -343,12 +488,5 @@ export default {
 }
 </script>
 
-<style >
-  #map {
-    height: 70%;
-    width: 100%;
-  }
-  h1 {
-    color: red;
-  }
+<style src='./style.css'>
 </style>

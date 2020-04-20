@@ -1,7 +1,7 @@
 <template>
   <div id="popup">
 
-    <b-button variant="danger" v-b-modal.modal-scrollable class="circle-icon" @click='help'><b-icon icon="geo-alt"></b-icon></b-button>
+    <b-button variant="danger" v-b-modal.modal-scrollable class="circle-icon"><b-icon icon="geo-alt"></b-icon></b-button>
 
     <b-modal id="modal-scrollable" scrollable :title="this.place.acronym" hide-footer="true">
 
@@ -82,8 +82,4 @@
     top:;
     left:;
   }
-
-  /* .list {
-    list-style: none;
-  } */
 </style>
